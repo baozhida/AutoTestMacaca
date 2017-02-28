@@ -9,3 +9,9 @@
 ```
 macaca-ios.js
 ```
+## 初始化时候传入代理端口
+
+```
+        porps.put("proxyPort", Integer.parseInt(proxyport));
+
+```
