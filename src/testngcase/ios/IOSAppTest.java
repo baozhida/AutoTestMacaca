@@ -74,27 +74,22 @@ public class IOSAppTest {
     }
 
     @Test
-    public void case_1进入旅游() {
+    public void case_001xxx() {
         // set screenshot save path
         //String courseFile = directory.getCanonicalPath();
-        System.out.println("------------1-点击旅游图片，进入旅游频道------------------");
         try {
 			driver.sleep(5000);
-			Element  el = driver.elementByXPath("//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]"
-	        		+ "/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]"
-	        		+ "/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]"
-	        		+ "/XCUIElementTypeCollectionView[1]/XCUIElementTypeCell[3]/XCUIElementTypeOther[1]"
-	        		+ "/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeImage[1]");
+			Element  el = driver.elementByXPath("//*[@name='xxx']");
 	        System.out.println("------------旅游控件存在------------------");
 
 	        el.click();
 	        //判断到达新页面
-	        assertTrueReWrite("assertTrue:元素未找到！",driver.sleep(5000).isElementExist("xpath", "//XCUIElementTypeStaticText[@name='旅游']/following-sibling::XCUIElementTypeOther"));
+	        assertTrueReWrite("assertTrue:元素未找到！",driver.sleep(5000).isElementExist("xpath", "//*[@name='xxx']"));
 	        //screenShot();
 	        System.out.println("------------控件存在------------------");
 
 	        //返回首页
-	        driver.elementByXPath("//XCUIElementTypeButton[@name='tab channel topbar back']").click();        
+	        driver.elementByXPath("//*[@name='tab back']").click();        
 	        driver.sleep(2000);
 	        isFail = false;
 		} catch (Exception e) {
@@ -110,7 +105,7 @@ public class IOSAppTest {
     	if(isFail==true){
     		//如果用例执行出错，检查是否在首页，如果不再首页，点击页面右上角的点，返回
     		for(int i=1;i<=5;i++){
-	    		if(driver.isElementExist("xpath", "//XCUIElementTypeButton[@name='首页']") == true){
+	    		if(driver.isElementExist("xpath", "//*[@name='首页']") == true){
 	    			return;
 	    		}else{
 	    			driver.tap(21, 42);
@@ -119,7 +114,6 @@ public class IOSAppTest {
     		}
     		//如果5次循环都不能到首页，重新初始化driver
     		initDriver();
-    		//return;
     	}
     }
     
