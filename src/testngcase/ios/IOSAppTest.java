@@ -38,7 +38,7 @@ public class IOSAppTest {
 
         JSONObject porps = new JSONObject();
         porps.put("platformName", platform);
-        porps.put("app", "./app/TuNiuApp.app");
+        porps.put("app", "./app/xxx.app");
         //0: 启动并安装 app。1 (默认): 卸载并重装 app。 2: 仅重装 app。3: 在测试结束后保持 app 状态。
         porps.put("reuse", 3);
         porps.put("udid", udid);
