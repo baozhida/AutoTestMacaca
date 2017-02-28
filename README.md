@@ -1,5 +1,5 @@
-# multi-driver
-使用testng控制并发，支持ios多台设备并行执行相同的case，也支持ios和android并行，或者android多台并行
+# 简介
+支持ios多台设备并行执行相同的case，也支持ios和android并行，或者android多台并行。使用testng控制并发，报告添加截图。
 
 # macaca多台ios真机设备并行 iproxy设置存在bug，多个设备都会使用8900端口，无法正常判断端口是否可用
 
