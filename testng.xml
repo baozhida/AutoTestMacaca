@@ -4,7 +4,7 @@
     <test name="IOSTest1">
         <parameter name="port" value="3456" />
         <parameter name="proxyport" value="8900" />
-        <parameter name="udid" value="f593db43a8469b44cb54745b2b5c85915bc9d701" />
+        <parameter name="udid" value="xxxxxxxxxxxxxxxxxx" />
         <classes>
             <class name="testngcase.ios.IOSAppTest" />
         </classes>
@@ -13,7 +13,7 @@
     <test name="IOSTest2">
             <parameter name="port" value="3457" />
             <parameter name="proxyport" value="8910" />
-            <parameter name="udid" value="e084de7f7049555955142ba8eec4712d9ff03a87" />
+            <parameter name="udid" value="xxxxxxxxxxxxxxxxxx" />
         <classes>
             <class name="testngcase.ios.IOSAppTest" />
         </classes>
