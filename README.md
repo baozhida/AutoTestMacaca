@@ -71,3 +71,15 @@ MAC全局安装的路径分别如下：
 /usr/local/lib/node_modules/macaca-ios/node_modules/webdriveragent/WebDriverAgent
 /usr/local/lib/node_modules/macaca-inspector/node_modules/webdriveragent/WebDriverAgent
 ```
+这个目录，由于webdriveragent -> .1.0.41@webdriveragent  是软连接，其实是一样的。
+
+第一个目录的项目是inspector功能执行时候，自动化安装WDA到iPhone上，为的是在手机启动WDA，可以查看手机UI控件布局。
+
+第二个目录是在UI自动化脚步时候，自动化安装WDA到iPhone上，为的是在手机启动WDA，可以执行ui case的指令。
+
+上面两个目录下各自找到项目文件，Xcode打开，下图中的［1］［2］team重新选择，原则上就可以直接使用，保险起见，把5处全部修改，保证不出错。
+
+接着修改Bundle Identifier，每个项目中能改的全部改掉，换个名字即可，比如把各处的id中的facebook改成abc
+
+放个截图：
+![xcode](./report/img/xcode1.png)
