@@ -10,10 +10,8 @@
     <property name="test.path" value="./src"/>
     <!-- lib包路径 根据实际情况修改-->
     <property name="lib.path" value="/Users/MAC/.m2/repository"/>
-    <!--生成报告junit4.xml路径 -->
+    <!--生成报告路径 -->
     <property name="report.path" value="./report"/>
-	<!--终端平台类型-->
-	<property name="platform" value="ios"/>
 		
 	<taskdef name="testng" classname="org.testng.TestNGAntTask">
 	    <classpath>
@@ -32,13 +30,6 @@
     </path>
     
     <target name="init">
-    	<!-- 清除Junit生成的报表文档 
-        //<delete dir="${report.path}/${platform}"/>
-    	//<mkdir dir="${report.path}/${platform}"/>
-    	 清除历史编译class
-    	<delete dir="${bulid.path}"/>
-    	//<mkdir dir="${bulid.path}"/>
-    	-->
     	<delete dir="${bulid.path}"/>
     </target>
 
@@ -56,7 +47,7 @@
 	 <target name="runtestng" depends="compile">
 	    <testng  classpathref="compile.path"  outputDir="report" 
 			useDefaultListeners="false"   
-	        listeners="org.uncommons.reportng.HTMLReporter,org.testng.reporters.FailedReporter" >
+	        listeners="org.uncommons.reportng.HTMLReporter,org.uncommons.reportng.JUnitXMLReporter" >
 	        <xmlfileset dir="${basedir}" includes="testng.xml"/>
 	        <jvmarg value="-Dfile.encoding=UTF-8" />
 	        <sysproperty key="org.uncommons.reportng.title" value="IOSUIAutoTestReport" /> 
