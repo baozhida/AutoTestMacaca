@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="IOS" parallel="tests" thread-count="2">
+    <test name="IOSTest1">
+        <parameter name="port" value="3456" />
+        <parameter name="proxyport" value="8900" />
+        <parameter name="udid" value="f593db43a8469b44cb54745b2b5c85915bc9d701" />
+        <classes>
+            <class name="testngcase.ios.IOSAppTest" />
+        </classes>
+    </test>
+
+    <test name="IOSTest2">
+            <parameter name="port" value="3457" />
+            <parameter name="proxyport" value="8910" />
+            <parameter name="udid" value="e084de7f7049555955142ba8eec4712d9ff03a87" />
+        <classes>
+            <class name="testngcase.ios.IOSAppTest" />
+        </classes>
+    </test>
+</suite>
