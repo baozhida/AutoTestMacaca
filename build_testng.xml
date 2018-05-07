@@ -5,17 +5,17 @@
     <!-- =================================================================== -->
     
     <!-- 编译文件class路径 -->
-    <property name="bulid.path" value="./build"/>
+    <property name="build.path" value="./build"/>
     <!-- 单元测试代码路径 -->
     <property name="test.path" value="./src"/>
     <!-- lib包路径 根据实际情况修改-->
-    <property name="lib.path" value="/Users/MAC/.m2/repository"/>
+    <property name="lib.path" value="C:\Users\baozhida\.m2\repository"/>
     <!--生成报告路径 -->
     <property name="report.path" value="./report"/>
 		
 	<taskdef name="testng" classname="org.testng.TestNGAntTask">
 	    <classpath>
-	      <pathelement location="lib/testng-6.9.10.jar"/>
+	      <pathelement location="lib/testng-6.10.jar"/>
 	    </classpath>
 	  </taskdef>
     
@@ -26,11 +26,12 @@
         <fileset dir="${lib.path}">
             <include name="**/*.jar"/>
         </fileset>
-        <pathelement path="${bulid.path}"/>
+        <pathelement path="${build.path}"/>
+        <pathelement location="lib/macacaclient-2.0.23.jar"/>
     </path>
     
     <target name="init">
-    	<delete dir="${bulid.path}"/>
+    	<delete dir="${build.path}"/>
     </target>
 
     <!-- =================================================================== -->
@@ -38,7 +39,7 @@
     <!-- =================================================================== -->
     <target name="compile" depends="init">
     	<mkdir dir="build"/>
-        <javac srcdir="${test.path}" destdir="${bulid.path}"  classpathref="compile.path" includeantruntime="on" encoding="UTF-8"/>
+        <javac srcdir="${test.path}" destdir="${build.path}"  classpathref="compile.path" includeantruntime="on" encoding="UTF-8"/>
     </target>
     
     <!-- =================================================================== -->
@@ -55,8 +56,8 @@
 	</target>		
 		
 	<target name="runall" depends="runtestng" description="deal the lable">
-        <exec executable="./bin/exec_replace.sh">
-        </exec>
+        <!--<exec executable="./bin/exec_replace.sh">
+        </exec>-->
     </target>
 	
 </project>

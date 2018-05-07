@@ -1,4 +1,4 @@
-package testngcase.ios;
+package macaca.testngcase.ios;
 
 //import static org.testng.AssertJUnit.assertTrue;
 //import static org.testng.AssertJUnit.fail;
@@ -9,18 +9,18 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import org.testng.annotations.AfterMethod;
 
 import com.alibaba.fastjson.JSONObject;
 
-import macaca.client.MacacaClient;
 import macaca.client.commands.Element;
-
+import macaca.testngcase.macaca.MacacaServer;
+import macaca.testngcase.macaca.MyMacacaClient;
 
 
 public class IOSAppTest {
@@ -29,9 +29,9 @@ public class IOSAppTest {
 	boolean isFail;
 	int initcount = 0;
 
-    private MacacaClient driver = new MacacaClient();
+	private MyMacacaClient driver = new MyMacacaClient();
     
-    public MacacaClient initDriver() throws Exception {
+    public MyMacacaClient initDriver() throws Exception {
     	initcount = initcount +1;
     	System.out.println("-----设备"+udid+"---第"+initcount+"次初始化-------------");
     	String platform = "IOS";
@@ -43,15 +43,12 @@ public class IOSAppTest {
         porps.put("reuse", 3);
         porps.put("udid", udid);
         porps.put("proxyPort", Integer.parseInt(proxyport));
+		porps.put("host", "127.0.0.1");
+		porps.put("port", Integer.parseInt(port));
         JSONObject desiredCapabilities = new JSONObject();
         desiredCapabilities.put("desiredCapabilities", porps);
-        desiredCapabilities.put("host", "127.0.0.1");
-        desiredCapabilities.put("port", Integer.parseInt(port)); 
-        
-        if(port.equals("3457")){
-        	driver.sleep(2000);
-        }
-        return driver.initDriver(desiredCapabilities); 
+
+		return (MyMacacaClient) driver.initDriver(desiredCapabilities);
     }
 
     @BeforeTest
@@ -61,11 +58,16 @@ public class IOSAppTest {
           this.proxyport = proxyport;
           this.udid = udid;
       }
-    @BeforeClass
-    public void setUp() throws Exception {
-    	
-    	initDriver();
-    }
+
+
+	@BeforeClass
+	public void setUp() throws Exception {
+		// 判断端口是否已经启动node进程。如果没有，启动macaca server
+		if(!MacacaServer.isPortRunning(port)){
+			MacacaServer.runMacacaServer(port);
+		}
+		initDriver();
+	}
     
     @BeforeMethod
     public void beforecase() throws Exception {
